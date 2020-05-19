@@ -43,7 +43,7 @@ class DbAroTest extends ArosTable
      * @param array $config Configuration array
      * @return void
      */
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         parent::initialize($config);
         $this->setAlias('DbAroTest');
@@ -70,7 +70,7 @@ class DbAcoTest extends AcosTable
      * @param array $config Configuration array
      * @return void
      */
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         parent::initialize($config);
         $this->setAlias('DbAcoTest');
@@ -97,7 +97,7 @@ class DbPermissionTest extends PermissionsTable
      * @param array $config Configuration array
      * @return void
      */
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         parent::initialize($config);
         $this->setAlias('DbPermissionTest');
@@ -126,7 +126,7 @@ class DbAcoActionTest extends AcoActionsTable
      * @param array $config Configuration array
      * @return void
      */
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->setTable('aco_actions');
         $this->belongsTo('DbAcoTest', [
@@ -146,7 +146,7 @@ class DbAroUserTest extends Entity
      * bindNode method
      *
      * @param string|array|Model $ref Ref
-     * @return void
+     * @return string|array
      */
     public function bindNode($ref = null)
     {
@@ -191,7 +191,7 @@ class AclNodeTest extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         Configure::write('Acl.classname', 'TestDbAcl');
@@ -211,7 +211,7 @@ class AclNodeTest extends TestCase
      *
      * @return void
      */
-    public function testNode()
+    public function testNode(): void
     {
         $Aco = TableRegistry::getTableLocator()->get('DbAcoTest');
 
@@ -278,7 +278,7 @@ class AclNodeTest extends TestCase
      *
      * @return void
      */
-    public function testNodeWithDuplicatePathSegments()
+    public function testNodeWithDuplicatePathSegments(): void
     {
         $Aco = TableRegistry::getTableLocator()->get('DbAcoTest');
         $nodes = $Aco->node('ROOT/Users');
@@ -290,7 +290,7 @@ class AclNodeTest extends TestCase
      *
      * @return void
      */
-    public function testNodeArrayFind()
+    public function testNodeArrayFind(): void
     {
         $Aro = TableRegistry::getTableLocator()->get('DbAroTest');
         $Aro->setEntityClass(__NAMESPACE__ . '\DbAroUserTest');
@@ -310,7 +310,7 @@ class AclNodeTest extends TestCase
      *
      * @return void
      */
-    public function testNodeObjectFind()
+    public function testNodeObjectFind(): void
     {
         $Aro = TableRegistry::getTableLocator()->get('DbAroTest');
         $Model = new DbAroUserTest(['id' => 1]);
@@ -330,7 +330,7 @@ class AclNodeTest extends TestCase
      *
      * @return void
      */
-    public function testNodeAliasParenting()
+    public function testNodeAliasParenting(): void
     {
         $Aco = TableRegistry::getTableLocator()->get('DbAcoTest');
         $conn = $Aco->getConnection();
@@ -362,7 +362,7 @@ class AclNodeTest extends TestCase
      *
      * @return void
      */
-    public function testNodeActionAuthorize()
+    public function testNodeActionAuthorize(): void
     {
         $this->deprecated(function () {
             Plugin::load('TestPlugin', ['autoload' => true]);

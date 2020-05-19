@@ -42,7 +42,7 @@ class AclPeople extends Table
      * @param array $config Configuration array
      * @return void
      */
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->setTable('people');
         $this->setEntityClass(__NAMESPACE__ . '\AclPerson');
@@ -64,7 +64,7 @@ class AclPerson extends Entity
     /**
      * parentNode method
      *
-     * @return void
+     * @return mixed
      */
     public function parentNode()
     {
@@ -99,7 +99,7 @@ class AclUsers extends Table
      * @param array $config Configuration array
      * @return void
      */
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->setTable('users');
         $this->setEntityClass(__NAMESPACE__ . '\AclUser');
@@ -120,6 +120,7 @@ class AclUser extends Entity
         return null;
     }
 }
+
 /**
  * AclPost class
  */
@@ -132,7 +133,7 @@ class AclPosts extends Table
      * @param array $config Configuration array
      * @return void
      */
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         $this->setTable('posts');
         $this->setEntityClass(__NAMESPACE__ . '\AclPost');
@@ -193,7 +194,7 @@ class AclBehaviorTest extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         Configure::write('Acl.database', 'test');
@@ -222,7 +223,7 @@ class AclBehaviorTest extends TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         unset($this->Aro, $this->Aco);
@@ -233,7 +234,7 @@ class AclBehaviorTest extends TestCase
      *
      * @return void
      */
-    public function testSetup()
+    public function testSetup(): void
     {
         $User = TableRegistry::getTableLocator()->get('AclUsers');
         $this->assertEquals('requester', $User->behaviors()->Acl->getConfig('type'));
@@ -249,7 +250,7 @@ class AclBehaviorTest extends TestCase
      *
      * @return void
      */
-    public function testSetupMulti()
+    public function testSetupMulti(): void
     {
         TableRegistry::getTableLocator()->clear();
         $User = TableRegistry::getTableLocator()->get('AclPeople', [
@@ -265,7 +266,7 @@ class AclBehaviorTest extends TestCase
      *
      * @return void
      */
-    public function testAfterSave()
+    public function testAfterSave(): void
     {
         $Post = TableRegistry::getTableLocator()->get('AclPosts');
         $data = new AclPost([
@@ -346,7 +347,7 @@ class AclBehaviorTest extends TestCase
      *
      * @return void
      */
-    public function testAfterSaveUpdateParentIdNotNull()
+    public function testAfterSaveUpdateParentIdNotNull(): void
     {
         $Person = TableRegistry::getTableLocator()->get('AclPeople');
         $Person->deleteAll(['name' => 'person']);
@@ -389,7 +390,7 @@ class AclBehaviorTest extends TestCase
      *
      * @return void
      */
-    public function testAfterDelete()
+    public function testAfterDelete(): void
     {
         $Person = TableRegistry::getTableLocator()->get('AclPeople');
 
@@ -452,7 +453,7 @@ class AclBehaviorTest extends TestCase
      *
      * @return void
      */
-    public function testNode()
+    public function testNode(): void
     {
         $Person = TableRegistry::getTableLocator()->get('AclPeople');
         $this->Aro->save(new Aro([

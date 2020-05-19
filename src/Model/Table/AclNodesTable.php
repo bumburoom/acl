@@ -36,7 +36,7 @@ class AclNodesTable extends Table
      *
      * @return void
      */
-    public static function defaultConnectionName()
+    public static function defaultConnectionName(): string
     {
         return Configure::read('Acl.database');
     }
@@ -73,10 +73,10 @@ class AclNodesTable extends Table
                 ],
                 'fields' => ['id', 'parent_id', 'model', 'foreign_key', 'alias'],
                 'join' => [[
-                        'table' => $table,
-                        'alias' => "{$type}0",
-                        'type' => 'INNER',
-                        'conditions' => ["{$type}0.alias" => $start],
+                    'table' => $table,
+                    'alias' => "{$type}0",
+                    'type' => 'INNER',
+                    'conditions' => ["{$type}0.alias" => $start],
                 ]],
                 'order' => ["{$type}.lft" => 'DESC'],
             ];

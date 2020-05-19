@@ -50,7 +50,7 @@ class AclExtrasTestCase extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         Configure::write('Acl.classname', 'DbAcl');
@@ -66,7 +66,7 @@ class AclExtrasTestCase extends TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         unset($this->Task);
@@ -77,7 +77,7 @@ class AclExtrasTestCase extends TestCase
      *
      * @return void
      */
-    public function testRecover()
+    public function testRecover(): void
     {
         $this->Task->startup();
         $this->Task->args = ['Aco'];
@@ -100,7 +100,7 @@ class AclExtrasTestCase extends TestCase
      *
      * @return void
      */
-    public function testStartup()
+    public function testStartup(): void
     {
         $this->assertEquals($this->Task->Acl, null);
         $this->Task->startup();
@@ -112,7 +112,7 @@ class AclExtrasTestCase extends TestCase
      *
      * @return void
      */
-    protected function _clean()
+    protected function _clean(): void
     {
         $tableName = 'acos';
         $db = ConnectionManager::get('test');
@@ -175,7 +175,7 @@ class AclExtrasTestCase extends TestCase
      *
      * @return void
      */
-    public function testAcoUpdate()
+    public function testAcoUpdate(): void
     {
         $this->_clean();
         $this->_setup();
@@ -218,7 +218,7 @@ class AclExtrasTestCase extends TestCase
      *
      * @return void
      */
-    public function testAcoUpdateWithNestedPrefixRoutes()
+    public function testAcoUpdateWithNestedPrefixRoutes(): void
     {
         $this->_clean();
         Configure::write('App.namespace', 'TestApp');
@@ -260,7 +260,7 @@ class AclExtrasTestCase extends TestCase
      *
      * @return void
      */
-    public function testAcoSyncRemoveMethods()
+    public function testAcoSyncRemoveMethods(): void
     {
         $this->_clean();
         $this->_setup();
@@ -289,7 +289,7 @@ class AclExtrasTestCase extends TestCase
      *
      * @return void
      */
-    public function testAcoUpdateAddingMethods()
+    public function testAcoUpdateAddingMethods(): void
     {
         $this->_clean();
         $this->_setup();
@@ -315,7 +315,7 @@ class AclExtrasTestCase extends TestCase
      *
      * @return void
      */
-    public function testAddingControllers()
+    public function testAddingControllers(): void
     {
         $this->_clean();
         $this->_setup();
@@ -338,7 +338,7 @@ class AclExtrasTestCase extends TestCase
      *
      * @return void
      */
-    public function testUpdateWithPlugins()
+    public function testUpdateWithPlugins(): void
     {
         $this->deprecated(function () {
             Plugin::unload();
@@ -403,7 +403,7 @@ class AclExtrasTestCase extends TestCase
      *
      * @return void
      */
-    public function testSyncWithNestedPlugin()
+    public function testSyncWithNestedPlugin(): void
     {
         $this->deprecated(function () {
             Plugin::unload();

@@ -35,7 +35,7 @@ class PhpAclTest extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         Configure::write('Acl.classname', 'PhpAcl');
@@ -53,7 +53,7 @@ class PhpAclTest extends TestCase
      *
      * @return void
      */
-    public function testRoleInheritance()
+    public function testRoleInheritance(): void
     {
         $roles = $this->Acl->Aro->roles('User/peter');
         $this->assertEquals(['Role/accounting'], $roles[0]);
@@ -71,7 +71,7 @@ class PhpAclTest extends TestCase
      *
      * @return void
      */
-    public function testAddRole()
+    public function testAddRole(): void
     {
         $this->assertEquals([[PhpAro::DEFAULT_ROLE]], $this->Acl->Aro->roles('foobar'));
         $this->Acl->Aro->addRole(['User/foobar' => 'Role/accounting']);
@@ -83,7 +83,7 @@ class PhpAclTest extends TestCase
      *
      * @return void
      */
-    public function testAroResolve()
+    public function testAroResolve(): void
     {
         $this->Acl->Aro->map = [
             'User' => 'FooModel/nickname',
@@ -110,7 +110,7 @@ class PhpAclTest extends TestCase
      *
      * @return void
      */
-    public function testAroAliases()
+    public function testAroAliases(): void
     {
         $this->Acl->Aro->map = [
             'User' => 'User/username',
@@ -163,7 +163,7 @@ class PhpAclTest extends TestCase
      *
      * @return void
      */
-    public function testCheck()
+    public function testCheck(): void
     {
         $this->assertTrue($this->Acl->check('jan', '/controllers/users/Dashboard'));
         $this->assertTrue($this->Acl->check('some_unknown_role', '/controllers/users/Dashboard'));
@@ -215,7 +215,7 @@ class PhpAclTest extends TestCase
      *
      * @return void
      */
-    public function testCheckIsCaseInsensitive()
+    public function testCheckIsCaseInsensitive(): void
     {
         $this->assertTrue($this->Acl->check('hardy', 'controllers/forms/new'));
         $this->assertTrue($this->Acl->check('Role/data_acquirer', 'controllers/forms/new'));
@@ -228,7 +228,7 @@ class PhpAclTest extends TestCase
      *
      * @return void
      */
-    public function testAllow()
+    public function testAllow(): void
     {
         $this->assertFalse($this->Acl->check('jeff', 'foo/bar'));
 
@@ -251,7 +251,7 @@ class PhpAclTest extends TestCase
      *
      * @return void
      */
-    public function testDeny()
+    public function testDeny(): void
     {
         $this->assertTrue($this->Acl->check('stan', 'controllers/baz/manager_foo'));
 
@@ -268,7 +268,7 @@ class PhpAclTest extends TestCase
      *
      * @return void
      */
-    public function testDenyRuleIsStrongerThanAllowRule()
+    public function testDenyRuleIsStrongerThanAllowRule(): void
     {
         $this->assertFalse($this->Acl->check('peter', 'baz/bam'));
         $this->Acl->allow('peter', 'baz/bam');
@@ -297,7 +297,7 @@ class PhpAclTest extends TestCase
      * @expectedException Cake\Core\Exception\Exception
      * @expectedExceptionMessage "roles" section not found in ACL configuration
      */
-    public function testInvalidConfigWithAroMissing()
+    public function testInvalidConfigWithAroMissing(): void
     {
         $config = ['aco' => ['allow' => ['foo' => '']]];
         $this->PhpAcl->build($config);
@@ -310,7 +310,7 @@ class PhpAclTest extends TestCase
      * @expectedException Cake\Core\Exception\Exception
      * @expectedExceptionMessage Neither "allow" nor "deny" rules were provided in ACL configuration.
      */
-    public function testInvalidConfigWithAcosMissing()
+    public function testInvalidConfigWithAcosMissing(): void
     {
         $config = [
             'roles' => ['Role/foo' => null],
@@ -324,7 +324,7 @@ class PhpAclTest extends TestCase
      *
      * @return void
      */
-    public function testAcoResolve()
+    public function testAcoResolve(): void
     {
         $this->assertEquals(['foo', 'bar'], $this->Acl->Aco->resolve('foo/bar'));
         $this->assertEquals(['foo', 'bar'], $this->Acl->Aco->resolve('foo/bar'));
@@ -348,7 +348,7 @@ class PhpAclTest extends TestCase
      * @expectedException PhpUnit\Framework\Error\Error
      * @expectedExceptionMessage cycle detected
      */
-    public function testAroDeclarationContainsCycles()
+    public function testAroDeclarationContainsCycles(): void
     {
         $config = [
             'roles' => [
@@ -373,7 +373,7 @@ class PhpAclTest extends TestCase
      *
      * @return void
      */
-    public function testPolicy()
+    public function testPolicy(): void
     {
         // allow by default
         $this->Acl->setConfig('adapter.policy', PhpAcl::ALLOW);

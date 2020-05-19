@@ -33,7 +33,7 @@ class CrudAuthorizeTest extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         Configure::write('Routing.prefixes', []);
@@ -53,7 +53,7 @@ class CrudAuthorizeTest extends TestCase
      *
      * @return void
      */
-    protected function _mockAcl()
+    protected function _mockAcl(): void
     {
         $this->Components->expects($this->any())
             ->method('load')
@@ -67,7 +67,7 @@ class CrudAuthorizeTest extends TestCase
      * @expectedException PHPUnit\Framework\Error\Warning
      * @return void
      */
-    public function testAuthorizeNoMappedAction()
+    public function testAuthorizeNoMappedAction(): void
     {
         $request = new ServerRequest('/posts/foobar');
         $request = $request->withAttribute('params', [
@@ -84,7 +84,7 @@ class CrudAuthorizeTest extends TestCase
      *
      * @return void
      */
-    public function testAuthorizeCheckSuccess()
+    public function testAuthorizeCheckSuccess(): void
     {
         $request = new ServerRequest('posts/index');
         $request = $request->withAttribute('params', [
@@ -107,7 +107,7 @@ class CrudAuthorizeTest extends TestCase
      *
      * @return void
      */
-    public function testAuthorizeCheckFailure()
+    public function testAuthorizeCheckFailure(): void
     {
         $request = new ServerRequest('posts/index');
         $request = $request->withAttribute('params', [
@@ -130,7 +130,7 @@ class CrudAuthorizeTest extends TestCase
      *
      * @return void
      */
-    public function testMapActionsGet()
+    public function testMapActionsGet(): void
     {
         $result = $this->auth->mapActions();
         $expected = [
@@ -149,7 +149,7 @@ class CrudAuthorizeTest extends TestCase
      *
      * @return void
      */
-    public function testMapActionsSet()
+    public function testMapActionsSet(): void
     {
         $map = [
             'create' => ['generate'],

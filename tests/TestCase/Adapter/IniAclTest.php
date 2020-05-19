@@ -33,7 +33,7 @@ class IniAclTest extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         Configure::write('Acl.classname', 'IniAcl');
@@ -51,7 +51,7 @@ class IniAclTest extends TestCase
      *
      * @return void
      */
-    public function testCheck()
+    public function testCheck(): void
     {
         $this->assertFalse($this->Acl->check('admin', 'ads'));
         $this->assertTrue($this->Acl->check('admin', 'posts'));
@@ -70,7 +70,7 @@ class IniAclTest extends TestCase
      *
      * @return void
      */
-    public function testCheckArray()
+    public function testCheckArray(): void
     {
         $user = [
             'User' => ['username' => 'admin'],

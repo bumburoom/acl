@@ -49,11 +49,11 @@ class CrudAuthorize extends BaseAuthorize
     /**
      * Authorize a user using the mapped actions and the AclComponent.
      *
-     * @param array $user The user to authorize
-     * @param \Cake\Network\Request $request The request needing authorization.
+     * @param $user
+     * @param ServerRequest $request
      * @return bool
      */
-    public function authorize($user, ServerRequest $request)
+    public function authorize($user, ServerRequest $request): bool
     {
         $mapped = $this->getConfig('actionMap.' . $request->getParam('action'));
 

@@ -31,7 +31,7 @@ class ActionsAuthorizeTest extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->controller = $this->getMockBuilder('Cake\Controller\Controller')
@@ -52,7 +52,7 @@ class ActionsAuthorizeTest extends TestCase
      *
      * @return void
      */
-    protected function _mockAcl()
+    protected function _mockAcl(): void
     {
         $this->Collection->expects($this->any())
             ->method('load')
@@ -65,7 +65,7 @@ class ActionsAuthorizeTest extends TestCase
      *
      * @return void
      */
-    public function testAuthorizeFailure()
+    public function testAuthorizeFailure(): void
     {
         $user = [
             'Users' => [
@@ -95,7 +95,7 @@ class ActionsAuthorizeTest extends TestCase
      *
      * @return void
      */
-    public function testAuthorizeSuccess()
+    public function testAuthorizeSuccess(): void
     {
         $user = [
             'Users' => [
@@ -125,7 +125,7 @@ class ActionsAuthorizeTest extends TestCase
      *
      * @return void
      */
-    public function testAuthorizeSettings()
+    public function testAuthorizeSettings(): void
     {
         $request = new ServerRequest('/posts/index');
         $request = $request->withAttribute('params', [
@@ -156,7 +156,7 @@ class ActionsAuthorizeTest extends TestCase
      *
      * @return void
      */
-    public function testActionMethod()
+    public function testActionMethod(): void
     {
         $request = new ServerRequest('/posts/index');
         $request = $request->withAttribute('params', [
@@ -174,7 +174,7 @@ class ActionsAuthorizeTest extends TestCase
      *
      * @return void
      */
-    public function testActionNoDoubleSlash()
+    public function testActionNoDoubleSlash(): void
     {
         $this->auth->setConfig('actionPath', '/controllers/');
         $request = new ServerRequest('/posts/index', false);
@@ -192,7 +192,7 @@ class ActionsAuthorizeTest extends TestCase
      *
      * @return void
      */
-    public function testActionWithPlugin()
+    public function testActionWithPlugin(): void
     {
         $request = new ServerRequest('/debug_kit/posts/index');
         $request = $request->withAttribute('params', [

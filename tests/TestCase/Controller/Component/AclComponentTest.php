@@ -32,7 +32,7 @@ class AclComponentTest extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         if (!class_exists('MockAclImplementation', false)) {
@@ -50,7 +50,7 @@ class AclComponentTest extends TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         unset($this->Acl);
@@ -63,7 +63,7 @@ class AclComponentTest extends TestCase
      * @expectedException \Cake\Core\Exception\Exception
      * @return void
      */
-    public function testConstrutorException()
+    public function testConstrutorException(): void
     {
         Configure::write('Acl.classname', 'AclClassNameThatDoesNotExist');
         $Collection = new ComponentRegistry();
@@ -75,7 +75,7 @@ class AclComponentTest extends TestCase
      *
      * @return void
      */
-    public function testAdapter()
+    public function testAdapter(): void
     {
         $Adapter = $this->getMockBuilder('Acl\AclInterface')->getMock();
         $Adapter->expects($this->once())->method('initialize')->with($this->Acl);
@@ -90,7 +90,7 @@ class AclComponentTest extends TestCase
      * @expectedException \Cake\Core\Exception\Exception
      * @return void
      */
-    public function testAdapterException()
+    public function testAdapterException(): void
     {
         $thing = new \StdClass();
         $this->Acl->adapter($thing);

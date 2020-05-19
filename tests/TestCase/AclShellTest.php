@@ -7,6 +7,10 @@ use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
+/**
+ * Class AclShellTest
+ * @package Acl\Test\TestCase
+ */
 class AclShellTest extends TestCase
 {
     public $fixtures = [
@@ -15,7 +19,7 @@ class AclShellTest extends TestCase
         'app.ArosAcos',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->io = $this->getMockBuilder('Cake\Console\ConsoleIo')

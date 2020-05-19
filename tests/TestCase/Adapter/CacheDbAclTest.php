@@ -77,7 +77,7 @@ class CacheDbAclTest extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         Configure::write('Acl.classname', __NAMESPACE__ . '\CachedDbAclTwoTest');
@@ -96,7 +96,7 @@ class CacheDbAclTest extends TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         unset($this->Acl);
@@ -109,7 +109,7 @@ class CacheDbAclTest extends TestCase
      *
      * @return void
      */
-    public function testCacheKeys()
+    public function testCacheKeys(): void
     {
         $this->assertSame('samir_print_read', $this->CachedDb->getCacheKey('Samir', 'print', 'read'));
         $this->assertSame('samir_root_tpsreports_update', $this->CachedDb->getCacheKey('Samir', 'ROOT/tpsReports/update', '*'));
@@ -127,7 +127,7 @@ class CacheDbAclTest extends TestCase
      *
      * @return void
      */
-    public function testCaching()
+    public function testCaching(): void
     {
         $this->CachedDb->Permission = $this
             ->getMockBuilder('Acl\Model\Table\PermissionsTable')
@@ -148,7 +148,7 @@ class CacheDbAclTest extends TestCase
      *
      * @return void
      */
-    public function testCacheFalse()
+    public function testCacheFalse(): void
     {
         $this->CachedDb->Permission = $this
             ->getMockBuilder('Acl\Model\Table\PermissionsTable')
@@ -169,7 +169,7 @@ class CacheDbAclTest extends TestCase
      *
      * @return void
      */
-    public function testCacheCleared()
+    public function testCacheCleared(): void
     {
         $this->CachedDb->Permission = $this
             ->getMockBuilder('Acl\Model\Table\PermissionsTable')
